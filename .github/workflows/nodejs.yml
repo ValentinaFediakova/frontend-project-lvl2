@@ -6,14 +6,14 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-  steps:
-    - name: code-coverage
-      uses: paambaati/codeclimate-action@v3.0.0
-      env:
-        CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
-      with:
-        coverageCommand: npm run coverage
-        debug: true
+    steps:
+      - name: code-coverage
+        uses: paambaati/codeclimate-action@v3.0.0
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+        with:
+          coverageCommand: npm run coverage
+          debug: true
 
 
 
