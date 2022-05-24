@@ -1,6 +1,6 @@
 [![Actions Status](https://github.com/ValentinaFediakova/frontend-project-lvl2/workflows/hexlet-check/badge.svg)](https://github.com/ValentinaFediakova/frontend-project-lvl2/actions)
 
-[![Actions Status](https://github.com/ValentinaFediakova/frontend-project-lvl2/workflows/linter-and-tests-check.yml/badge.svg)](https://github.com/ValentinaFediakova/frontend-project-lvl2/actions)
+[![linter-and-test-check](https://github.com/ValentinaFediakova/frontend-project-lvl2/actions/workflows/linter-and-tests-check.yml/badge.svg)](https://github.com/ValentinaFediakova/frontend-project-lvl2/actions/workflows/linter-and-tests-check.yml)
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/2a697c3d1afb290f45bc/maintainability)](https://codeclimate.com/github/ValentinaFediakova/frontend-project-lvl2/maintainability)
 
