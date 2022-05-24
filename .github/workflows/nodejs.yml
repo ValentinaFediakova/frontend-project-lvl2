@@ -1,0 +1,27 @@
+# Name of workflow
+name: Node CI
+on:
+  - push
+  - pull_request
+env:
+  CI: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14.x]
+
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v2
+      - name: npm packages install
+        run: npm i
+      - name: Test & publish code coverage
+        uses: paambaati/codeclimate-action@v3
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID_PRO2 }}
+        with:
+          coverageCommand: make test-coverage
+          debug: true
