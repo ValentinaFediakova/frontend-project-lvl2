@@ -24,10 +24,3 @@ jobs:
           run: npm i
         - name: gendiff tests status
           run: make test
-        - name: code coverage
-          uses: paambaati/codeclimate-action@v3
-          env:
-          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID_PRO2 }}
-        with:
-          coverageCommand: make cover
-          debug: true
