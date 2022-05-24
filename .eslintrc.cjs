@@ -1,18 +1,14 @@
 module.exports = {
     "env": {
-        "browser": true,
         "es2021": true,
         "node": true,
-        "amd": true,
     },
+    "parser": "@babel/eslint-parser",
     "extends": "eslint:recommended",
     "parserOptions": {
         "ecmaVersion": "latest",
-        "sourceType": "module"
-    },
-    globals: {
-        window: true,
-        module: true
+        "sourceType": "module",
+        "requireConfigFile": false,
     },
     "rules": {
     }

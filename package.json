@@ -8,10 +8,10 @@
     "gendiff": "bin/gendiff.js"
   },
   "scripts": {
-    "test": "npx jest --bail"
+    "test": "npx jest"
   },
   "repository": {
-    "type": "module",
+    "type": "git",
     "url": "git+https://github.com/ValentinaFediakova/frontend-project-lvl2.git"
   },
   "author": "",
@@ -22,12 +22,15 @@
   "homepage": "https://github.com/ValentinaFediakova/frontend-project-lvl2#readme",
   "devDependencies": {
     "@babel/core": "^7.18.0",
+    "@babel/eslint-parser": "^7.17.0",
     "@babel/preset-env": "^7.18.0",
     "babel-jest": "^28.1.0",
+    "babel-plugin-codegen": "^4.1.5",
     "eslint": "^8.16.0",
     "jest": "^28.1.0"
   },
   "dependencies": {
+    "babel-core": "^6.26.3",
     "babel-plugin-macros": "^3.1.0",
     "commander": "^9.2.0",
     "lodash": "^4.17.21"
