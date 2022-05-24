@@ -7,6 +7,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: checkout repo
+        uses: actions/checkout@v2
+      - name: npm packages install
+        run: npm i
       - name: code-coverage
         uses: paambaati/codeclimate-action@v3.0.0
         env:
