@@ -1,0 +1,1 @@
+{"buildTargets":["cover","install","lint","lint-fix","make","publish","test"],"launchTargets":[],"customConfigurationProvider":{"workspaceBrowse":{"browsePath":[],"compilerArgs":[]},"fileIndex":[]}}

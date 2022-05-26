@@ -1,6 +1,5 @@
 {
   "timeout": 20,
   "verbose": true,
-  "host": "hexlet.io",
-  "rokoko": 1234
+  "host": "hexlet.io"
 }
