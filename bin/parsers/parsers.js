@@ -1,14 +1,15 @@
 import yaml from 'js-yaml';
-import fs from 'fs';
 
-export const parser = (filePath) => {
-  const content = fs.readFileSync(filePath).toString();
+export const parser = (content, filePath) => {
+  // console.log('parser filePath', filePath.includes('.json'))
 
   if (filePath.includes('.json')) {
+    // console.log('content', content)
     return JSON.parse(content);
   }
 
   if (filePath.includes('.yml')) {
+    // console.log('content', parseYml(content))
     return parseYml(content);
   }
 }
