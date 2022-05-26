@@ -1,5 +1,4 @@
 import yaml from 'js-yaml';
-import _ from 'lodash';
 import fs from 'fs';
 
 export const parser = (filePath) => {
