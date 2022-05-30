@@ -6,5 +6,8 @@
 
 [![Test Coverage](https://api.codeclimate.com/v1/badges/2a697c3d1afb290f45bc/test_coverage)](https://codeclimate.com/github/ValentinaFediakova/frontend-project-lvl2/test_coverage)
 
-### Asciinema:
+### Asciinema (compare 2 .json files):
 https://asciinema.org/connect/a47859ea-d8bc-409c-8412-4f4a0e2b1854
+
+### Asciinema (compare 2 .yml files):
+https://asciinema.org/a/InGr5qzuYUtiOVzOnWOaEzJpD
