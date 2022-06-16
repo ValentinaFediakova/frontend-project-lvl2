@@ -11,3 +11,6 @@ https://asciinema.org/connect/a47859ea-d8bc-409c-8412-4f4a0e2b1854
 
 ### Asciinema (compare 2 .yml files):
 https://asciinema.org/a/InGr5qzuYUtiOVzOnWOaEzJpD
+
+### Asciinema (compare 2 nested files):
+https://asciinema.org/a/CEjodQ0383vQYcebfZ7xbZJUd

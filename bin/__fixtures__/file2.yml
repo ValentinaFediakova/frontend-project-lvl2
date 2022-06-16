@@ -1,6 +1,6 @@
 timeout: 
-- 20
+ "20"
 host: 
-- hexlet.io
+ "hexlet.io"
 verbose: 
-- true
+ "true"

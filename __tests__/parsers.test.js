@@ -14,8 +14,67 @@ const result1 = {
     "proxy": "123.234.53.22",
     "follow": false
   }
-  
-const result2 = { timeout: '20', host: 'hexlet.io', verbose: 'true' }
+
+
+const result2 = {
+  "host": "hexlet.io",
+  "timeout": 20,
+  "verbose": true
+}
+
+const result3 = {
+  "common": {
+    "setting1": "Value 1",
+    "setting2": 200,
+    "setting3": true,
+    "setting6": {
+      "key": "value",
+      "doge": {
+        "wow": ""
+      }
+    }
+  },
+  "group1": {
+    "baz": "bas",
+    "foo": "bar",
+    "nest": {
+      "key": "value"
+    }
+  },
+  "group2": {
+    "abc": 12345,
+    "deep": {
+      "id": 45
+    }
+  }
+}
+
+const result4 = {
+  "common": {
+    "setting1": "Value 1",
+    "setting2": 200,
+    "setting3": true,
+    "setting6": {
+      "key": "value",
+      "doge": {
+        "wow": ""
+      }
+    }
+  },
+  "group1": {
+    "baz": "bas",
+    "foo": "bar",
+    "nest": {
+      "key": "value"
+    }
+  },
+  "group2": {
+    "abc": 12345,
+    "deep": {
+      "id": 45
+    }
+  }
+}
 
 test ('test function parser', () => {
   const file1 = getFixturePath('file1.json');
@@ -27,5 +86,14 @@ test ('test function parser', () => {
   const content2 = fs.readFileSync(file2).toString();
   const b = parser(content2, file2)
   expect(b).toEqual(result2);
-})
 
+  const file3 = getFixturePath('rFile1.json')
+  const content3 = fs.readFileSync(file3).toString();
+  const parse3 = parser(content3, file3);
+  expect(parse3).toEqual(result3)
+
+  const file4 = getFixturePath('rFile1.yml')
+  const content4 = fs.readFileSync(file4).toString();
+  const parse4 = parser(content4, file4);
+  expect(parse4).toEqual(result4)
+})

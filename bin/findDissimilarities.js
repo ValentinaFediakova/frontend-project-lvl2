@@ -1,88 +1,136 @@
 import _ from 'lodash';
+import { formatter } from './stylish.js';
 
-export const findSimilarString = (data1, data2) => {
-  const entriesData1 = Object.entries(data1);
-  const copyEntriesData1 = _.cloneDeep(entriesData1);
-
-  const similarStrings = copyEntriesData1
-    .filter(([keyData1, valueData1]) => _.has(data2, keyData1) && valueData1 === data2[keyData1])
-    .map((item) => {
-      const result = [];
-      const [keyDataItem, valueDataItem] = item;
-      result.push(keyDataItem, valueDataItem, ' ')
-      return result
-    })
-
-  return similarStrings;
-}
-  
-const findChangedStrings = (data1, data2) => {
-  const entriesData1 = Object.entries(data1);
-  const copyEntriesData1 = _.cloneDeep(entriesData1);
-
-  const changedData = copyEntriesData1
-    .filter(([keyData1, valueData1]) => _.has(data2, keyData1) && valueData1 !== data2[keyData1])
-    .map((item) => {
-      const result = [];
-      const [keyData1Item, valueData1Item] = item;
-      result.push([keyData1Item, valueData1Item, '-'])
-      result.push([keyData1Item, data2[keyData1Item], '+'])
-      return result;
-    });
-
-  return changedData;
+const statuses = {
+	NOT_CHANGED: 'not_changed',
+	ADDED: 'added',
+	DELETED: 'deleted',
+	CHANGED: 'changed',
 }
 
-const findDeletedStrings = (data1, data2) => {
-  const entriesData1 = Object.entries(data1);
-  const copyEntriesData1 = _.cloneDeep(entriesData1);
+const checkPlaneStatus = (partOfData, path, comparedData, isCallForCompareData2) => {
+	const [key, value] = partOfData;
+	const valueOfComparedData = _.get(comparedData, path);
 
-  const deletedStrings = copyEntriesData1
-    .filter(([keyData1, ]) => _.has(data2, keyData1) === false)
-    .map((item) => {
-      const result = [];
-      const [keyDataItem, valueDataItem] = item;
-      result.push(keyDataItem, valueDataItem, '-')
-      return result
-    })
+	if (_.has(comparedData, path) && value === valueOfComparedData) {
+		return { 'key': `${key}`, 'value': value, 'status': statuses.NOT_CHANGED }
+	}
 
-  return deletedStrings;
+	if (_.has(comparedData, path) && value !== valueOfComparedData) {
+		return { 'key': `${key}`, 'value': value, 'newValue': valueOfComparedData, 'status': statuses.CHANGED }
+	}
+
+	if (!_.has(comparedData, path)) {
+		return { 'key': `${key}`, 'value': value, 'status': isCallForCompareData2 ? statuses.ADDED : statuses.DELETED }
+	}
+
+	console.log('%c Oh my heavens! ', 'background: #222; color: #bada55');
+	return;
+
 }
 
-const findAddedStrings = (data1, data2) => {
-  const entriesData2 = Object.entries(data2);
-  const copyEntriesData2 = _.cloneDeep(entriesData2)
+const addStatusForChildren = (children) => {
+	const formChildrenStatus = (child) => {
+		let newData = {};
+		const entriesChild = Object.entries(child);
 
-  const addedString = copyEntriesData2
-  .filter(([keyData2, ]) => !_.has(data1, keyData2))
-  .map(([keyData2, valueData2]) => {
-    const result = [];
-    result.push(keyData2, valueData2, '+');
-    return result;
-  })
 
-  return addedString;
+		entriesChild.forEach((item) => {
+			const [key, value] = item;
+			if (!_.isObject(value)) {
+				newData[key] = { 'key': `${key}`, 'value': value, 'status': statuses.NOT_CHANGED }
+				return
+			}
+			newData[key] = { 'key': `${key}`, 'value': formChildrenStatus(value), 'status': statuses.NOT_CHANGED }
+		})
+		return newData;
+	}
+
+	const result = formChildrenStatus(children)
+	return result
+}
+
+const whichFormatterUse = (data, formatterFlag) => {
+	if (formatterFlag === 'stylish') {
+		return 	formatter(data);
+	}
 }
 
 
-export const dissimilarity = (data1, data2) => {
-  const similarStrings = findSimilarString(data1, data2);
-  const changedStrings = findChangedStrings(data1, data2);
-  const deletedStrings = findDeletedStrings(data1, data2);
-  const addedStrings = findAddedStrings(data1, data2);
+export const dissimilarities = (data1, data2, whichFormatter = 'stylish') => {
 
-  const cancatArray = [similarStrings, deletedStrings, addedStrings];
-  cancatArray.push(changedStrings.flat())
-  const flatedConcate = cancatArray.flat()
-  const sortedByAlphabet = _.sortBy(flatedConcate);
-  const stringResult = resultToUsableStyle(sortedByAlphabet);
-  return stringResult;
+	const formStatus = (mainData, comparedData, path, prevResult = null) => {
+		const isCallForCompareData2 = Boolean(prevResult);
+		const entriesData = Object.entries(mainData);
+		const mainDataWithStatuses = {}
+
+
+		entriesData.forEach((item) => {
+			const [key, value] = item;
+			const valueofCompareddata = _.get(comparedData, [...path, key])
+
+			if (!_.isObject(value) && !_.isObject(valueofCompareddata)) {
+				const dataWithDiffStatus = checkPlaneStatus([key, value], [...path, key], comparedData, isCallForCompareData2);
+				mainDataWithStatuses[key] = dataWithDiffStatus;
+				return;
+			}		
+
+			if (!_.isObject(value) && _.isObject(valueofCompareddata) && !isCallForCompareData2) {
+				const dataWithDiffStatus = { 'key': `${key}`, 'value': value, 'newValue': JSON.stringify(addStatusForChildren(valueofCompareddata)), 'newValueIsJson': true, 'status': statuses.CHANGED };
+				mainDataWithStatuses[key] = dataWithDiffStatus;
+				return;
+			}
+
+			if (_.has(comparedData, [...path, key]) && !_.isObject(valueofCompareddata) && !isCallForCompareData2) {
+				const dataWithDiffStatus = { 'key': `${key}`, 'value': JSON.stringify(addStatusForChildren(value)), 'valueIsJson': true, 'newValue': valueofCompareddata, 'status': statuses.CHANGED };
+				mainDataWithStatuses[key] = dataWithDiffStatus;
+				return;
+			}
+
+			if (!_.has(comparedData, [...path, key])) {
+				const dataWithDiffStatus = { 'key': `${key}`, 'status': isCallForCompareData2 ? statuses.ADDED : statuses.DELETED, 'value': addStatusForChildren(value) };
+				mainDataWithStatuses[key] = dataWithDiffStatus;
+				return;
+			}
+
+			const dataWithDiffStatus = { 'key': `${key}`, 'status': statuses.NOT_CHANGED, 'value': formStatus(value, comparedData, [...path, key], isCallForCompareData2) }
+			mainDataWithStatuses[key] = dataWithDiffStatus;
+		})
+
+		return mainDataWithStatuses;
+	}
+
+
+
+	const result = formStatus(data1, data2, []);
+	const result2 = formStatus(data2, data1, [], true);
+	const result3 = _.merge(result2, result);
+	const a = sortData(result3);
+
+	const mainresult = whichFormatterUse(a, whichFormatter);
+
+	return mainresult;
 }
 
-const resultToUsableStyle = (object) => {
-  const objectToString = object.map(([key, value, sign]) => {
-    return `${sign} ${key}: ${value}\n`
-  })
 
-  return `{\n${objectToString.join('')}}`
+const sortData = (data) => {
+	const cloneData = _.cloneDeep(data)
+
+	const formSortedData = (partOfData) => {
+		const entriesOfData = Object.entries(partOfData)
+			.sort((a, b) => a[0] > b[0] ? 1 : -1)
+			.map(([key, keyStatusValue]) => {
+				if (!_.isObject(keyStatusValue.value)) {
+					return [key, keyStatusValue];
+				}				
+				return [key, {...keyStatusValue, value: formSortedData(keyStatusValue.value)}];
+			})
+
+		return Object.fromEntries(entriesOfData);
+	}
+
+	const sortResult = formSortedData(cloneData)
+	return sortResult;
 }
+
+// export const dissimilaritiesResult = dissimilarities(path1, path2);
