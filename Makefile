@@ -7,6 +7,9 @@ publish:
 lint:
 	npx eslint .
 
+lint-json:
+	npx eslint --format json
+
 lint-fix:
 	npx eslint --fix .
 
