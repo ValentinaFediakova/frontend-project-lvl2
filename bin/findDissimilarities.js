@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import { formatter } from './stylish.js';
+import { whichFormatterUse } from './formatters/index.js';
 
 const statuses = {
 	NOT_CHANGED: 'not_changed',
@@ -7,6 +7,8 @@ const statuses = {
 	DELETED: 'deleted',
 	CHANGED: 'changed',
 }
+
+export const optionsOfObject = {isPlainObject: true}
 
 const checkPlaneStatus = (partOfData, path, comparedData, isCallForCompareData2) => {
 	const [key, value] = partOfData;
@@ -50,12 +52,6 @@ const addStatusForChildren = (children) => {
 	return result
 }
 
-const whichFormatterUse = (data, formatterFlag) => {
-	if (formatterFlag === 'stylish') {
-		return 	formatter(data);
-	}
-}
-
 
 export const dissimilarities = (data1, data2, whichFormatter = 'stylish') => {
 
@@ -74,6 +70,8 @@ export const dissimilarities = (data1, data2, whichFormatter = 'stylish') => {
 				mainDataWithStatuses[key] = dataWithDiffStatus;
 				return;
 			}		
+
+			optionsOfObject.isPlainObject = false;
 
 			if (!_.isObject(value) && _.isObject(valueofCompareddata) && !isCallForCompareData2) {
 				const dataWithDiffStatus = { 'key': `${key}`, 'value': value, 'newValue': JSON.stringify(addStatusForChildren(valueofCompareddata)), 'newValueIsJson': true, 'status': statuses.CHANGED };

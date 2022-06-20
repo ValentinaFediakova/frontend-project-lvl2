@@ -14,3 +14,6 @@ https://asciinema.org/a/InGr5qzuYUtiOVzOnWOaEzJpD
 
 ### Asciinema (compare 2 nested files):
 https://asciinema.org/a/CEjodQ0383vQYcebfZ7xbZJUd
+
+### Asciinema (compare 2 files and show in plain format):
+https://asciinema.org/a/td2Cfnx5f8g4rT8jadfgL9G3b
