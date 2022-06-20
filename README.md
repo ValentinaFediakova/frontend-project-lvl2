@@ -17,3 +17,6 @@ https://asciinema.org/a/CEjodQ0383vQYcebfZ7xbZJUd
 
 ### Asciinema (compare 2 files and show in plain format):
 https://asciinema.org/a/td2Cfnx5f8g4rT8jadfgL9G3b
+
+### Asciinema (compare 2 files and show in json format):
+https://asciinema.org/a/8qWgsHu7s4Zf2w9g7LLB5Kttv
