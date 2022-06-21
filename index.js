@@ -1,6 +1,7 @@
 import fs from 'fs';
 // import { fileURLToPath } from 'url';
 // import { dirname, join } from 'path';
+import path from 'path';
 import { parser } from './bin/parsers/parsers.js'
 import { dissimilarities } from './bin/findDissimilarities.js'
 
