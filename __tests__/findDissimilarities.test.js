@@ -4,7 +4,6 @@ import { expect, test } from '@jest/globals';
 import fs from 'fs';
 import { parser } from '../bin/parsers/parsers.js'
 import { dissimilarities } from '../bin/findDissimilarities.js'
-// import { inDepthDissimilarity } from '../bin/findInDepthDissimilarities.js'
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
