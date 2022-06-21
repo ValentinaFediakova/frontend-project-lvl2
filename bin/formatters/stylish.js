@@ -30,16 +30,16 @@ const formatStatusToSignForSimpleData = ([key, value, status, newValue], path) =
 	const numberOfSpaces = countNumberOfSpaces(path)
 	const numberOfSpaceWithSign = countNumberOfSpaces(path, { withSign: true })
 	if (status === "added") {
-		return `\n${' '.repeat(numberOfSpaceWithSign)}+ ${key}:${value}`
+		return `\n${'\u00a0'.repeat(numberOfSpaceWithSign)}+ ${key}:\u00a0${value}`
 	}
 	if (status === "deleted") {
-		return `\n${' '.repeat(numberOfSpaceWithSign)}- ${key}:${value}`
+		return `\n${'\u00a0'.repeat(numberOfSpaceWithSign)}- ${key}:\u00a0${value}`
 	}
 	if (status === "not_changed") {
-		return `\n${' '.repeat(numberOfSpaces)}${key}:${value}`
+		return `\n${'\u00a0'.repeat(numberOfSpaces)}${key}:\u00a0${value}`
 	}
 	if (status === "changed") {
-        return `\n${' '.repeat(numberOfSpaceWithSign)}- ${key}:${value}\n${' '.repeat(numberOfSpaceWithSign)}+ ${key}:${newValue}`
+        return `\n${'\u00a0'.repeat(numberOfSpaceWithSign)}- ${key}:\u00a0${value}\n${' '.repeat(numberOfSpaceWithSign)}+ ${key}:\u00a0${newValue}`
 	}
 
 	return;
@@ -57,12 +57,12 @@ const statusToSignForNotchangedObjects = (data, path) => {
 			const numberOfSpaces = countNumberOfSpaces(pathItem)
 
 			if (!_.isObject(valueItem.value)) {
-				const formatedString = `\n${' '.repeat(numberOfSpaces)}${valueItem.key}:${valueItem.value}`
+				const formatedString = `\n${' '.repeat(numberOfSpaces)}${valueItem.key}: ${valueItem.value}`
 				formatedData = [...formatedData, formatedString]
 				return
 			}
 
-			formatedData = [...formatedData, `\n${' '.repeat(numberOfSpaces)}${valueItem.key}:{${formatStatus(valueItem.value, pathItem)}\n${' '.repeat(numberOfSpaces)}}`]
+			formatedData = [...formatedData, `\n${' '.repeat(numberOfSpaces)}${valueItem.key}: {${formatStatus(valueItem.value, pathItem)}\n${' '.repeat(numberOfSpaces)}}`]
 			return
 		})
 
@@ -81,15 +81,15 @@ const convertInnersIfObjectHasChangeStatus = (valueString, path) => {
 
 
 	if (_.isObject(value)) {
-		const dataWithDiffStatusFirst = `${' '.repeat(numberOfSpaceWithSign)}- ${valueString.key}:{${statusToSignForNotchangedObjects(value, path)}\n${' '.repeat(numberOfSpaces)}}`
-		const dataWithDiffStatusSecond = `${' '.repeat(numberOfSpaceWithSign)}+ ${valueString.key}:${newValue}`
+		const dataWithDiffStatusFirst = `${' '.repeat(numberOfSpaceWithSign)}- ${valueString.key}: {${statusToSignForNotchangedObjects(value, path)}\n${' '.repeat(numberOfSpaces)}}`
+		const dataWithDiffStatusSecond = `${' '.repeat(numberOfSpaceWithSign)}+ ${valueString.key}: ${newValue}`
 		const result = `\n${dataWithDiffStatusFirst}\n${dataWithDiffStatusSecond}`
 		return result;
 	}
 
 	if (_.isObject(newValue)) {
-		const dataWithDiffStatusFirst = `${' '.repeat(numberOfSpaceWithSign)}- ${valueString.key}:${value}`
-		const dataWithDiffStatusSecond = `${' '.repeat(numberOfSpaceWithSign)}+ ${valueString.key}:{${statusToSignForNotchangedObjects(newValue, path)}\n${' '.repeat(numberOfSpaces)}}`
+		const dataWithDiffStatusFirst = `${' '.repeat(numberOfSpaceWithSign)}- ${valueString.key}: ${value}`
+		const dataWithDiffStatusSecond = `${' '.repeat(numberOfSpaceWithSign)}+ ${valueString.key}: {${statusToSignForNotchangedObjects(newValue, path)}\n${' '.repeat(numberOfSpaces)}}`
 		const result = `\n${dataWithDiffStatusFirst}\n${dataWithDiffStatusSecond}`
 		return result;	
 	}
@@ -117,7 +117,7 @@ export const stylishFormatter = (data) => {
 			
 			if (valueData.status === 'added' || valueData.status === 'deleted') {
 				const singBeforeObject = valueData.status === 'added' ? '+ ' : '- ';
-				const stringForData = `\n${' '.repeat(numberOfSpaceWithSign)}${singBeforeObject}${keyItem}:{${statusToSignForNotchangedObjects(valueData.value, [...path, valueData.key])}\n${' '.repeat(numberOfSpaces)}}`
+				const stringForData = `\n${' '.repeat(numberOfSpaceWithSign)}${singBeforeObject}${keyItem}: {${statusToSignForNotchangedObjects(valueData.value, [...path, valueData.key])}\n${' '.repeat(numberOfSpaces)}}`
 				mainFormatedData = [...mainFormatedData, stringForData]
 				return
 			}
@@ -127,7 +127,7 @@ export const stylishFormatter = (data) => {
 				return 
 			}
 
-			const stringForData = `\n${' '.repeat(numberOfSpaces)}${keyItem}:{${formatData(valueData.value, [...path, keyItem])}\n${' '.repeat(numberOfSpaces)}}`
+			const stringForData = `\n${' '.repeat(numberOfSpaces)}${keyItem}: {${formatData(valueData.value, [...path, keyItem])}\n${' '.repeat(numberOfSpaces)}}`
 			mainFormatedData = [...mainFormatedData, stringForData]
 		})
 
