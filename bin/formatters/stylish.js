@@ -30,16 +30,16 @@ const formatStatusToSignForSimpleData = ([key, value, status, newValue], path) =
 	const numberOfSpaces = countNumberOfSpaces(path)
 	const numberOfSpaceWithSign = countNumberOfSpaces(path, { withSign: true })
 	if (status === "added") {
-		return `\n${'\u00a0'.repeat(numberOfSpaceWithSign)}+ ${key}:\u00a0${value}`
+		return `\n${' '.repeat(numberOfSpaceWithSign)}+ ${key}: ${value}`
 	}
 	if (status === "deleted") {
-		return `\n${'\u00a0'.repeat(numberOfSpaceWithSign)}- ${key}:\u00a0${value}`
+		return `\n${' '.repeat(numberOfSpaceWithSign)}- ${key}: ${value}`
 	}
 	if (status === "not_changed") {
-		return `\n${'\u00a0'.repeat(numberOfSpaces)}${key}:\u00a0${value}`
+		return `\n${' '.repeat(numberOfSpaces)}${key}: ${value}`
 	}
 	if (status === "changed") {
-        return `\n${'\u00a0'.repeat(numberOfSpaceWithSign)}- ${key}:\u00a0${value}\n${' '.repeat(numberOfSpaceWithSign)}+ ${key}:\u00a0${newValue}`
+        return `\n${' '.repeat(numberOfSpaceWithSign)}- ${key}: ${value}\n${' '.repeat(numberOfSpaceWithSign)}+ ${key}: ${newValue}`
 	}
 
 	return;
