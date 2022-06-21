@@ -1,17 +1,25 @@
-import path from 'path';
 import fs from 'fs';
-
+import path from 'path';
+import { parser } from './parsers/parsers.js'
 import { dissimilarities } from './bin/findDissimilarities.js'
 
-const gendiff = (path1, path2, formatter = 'stylish') => {
-	const filePath1 = path.resolve(path1);
-	const filePath2 = path.resolve(path2);
-	const data1 = fs.readFileSync(filePath1).toString();
-	const data2 = fs.readFileSync(filePath2).toString();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+const getAbsolutePath = (filename) => join(__dirname, filename);
 
+const getFileData = (filepath) => {
+  const absoluteFilePath = getAbsolutePath(filepath);
+  return fs.readFileSync(absoluteFilePath, 'utf-8').toString();
+};
+
+const genDiff = (filepath1, filepath2, formatName = 'stylish') => {
+	const content1 = getFileData(filepath1);
+  const content2 = getFileData(filepath2);
+	const data1 = parser(content1, filepath1)
+	const data2 = parser(content2, filepath2)
 
 	const diff = dissimilarities(data1, data2, formatter);
 	return diff;
-}
+};
 
-export default gendiff;
+export default genDiff;
