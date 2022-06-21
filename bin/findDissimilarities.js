@@ -130,5 +130,3 @@ const sortData = (data) => {
 	const sortResult = formSortedData(cloneData)
 	return sortResult;
 }
-
-// export const dissimilaritiesResult = dissimilarities(path1, path2);
