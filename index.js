@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { parser } from './parsers/parsers.js'
+import { parser } from './bin/parsers/parsers.js'
 import { dissimilarities } from './bin/findDissimilarities.js'
 
 const __filename = fileURLToPath(import.meta.url);
