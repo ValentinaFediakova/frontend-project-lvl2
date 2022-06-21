@@ -30,16 +30,16 @@ const formatStatusToSignForSimpleData = ([key, value, status, newValue], path) =
 	const numberOfSpaces = countNumberOfSpaces(path)
 	const numberOfSpaceWithSign = countNumberOfSpaces(path, { withSign: true })
 	if (status === "added") {
-		return `\n${' '.repeat(numberOfSpaceWithSign)}+ ${key}: ${value}`
+		return `\n${'&emsp'.repeat(numberOfSpaceWithSign)}+ ${key}: ${value}`
 	}
 	if (status === "deleted") {
-		return `\n${' '.repeat(numberOfSpaceWithSign)}- ${key}: ${value}`
+		return `\n${'&ensp'.repeat(numberOfSpaceWithSign)}- ${key}: ${value}`
 	}
 	if (status === "not_changed") {
-		return `\n${' '.repeat(numberOfSpaces)}${key}: ${value}`
+		return `\n${'&thinsp'.repeat(numberOfSpaces)}${key}: ${value}`
 	}
 	if (status === "changed") {
-        return `\n${' '.repeat(numberOfSpaceWithSign)}- ${key}: ${value}\n${' '.repeat(numberOfSpaceWithSign)}+ ${key}: ${newValue}`
+        return `\n${'&nbsp'.repeat(numberOfSpaceWithSign)}- ${key}: ${value}\n${' '.repeat(numberOfSpaceWithSign)}+ ${key}: ${newValue}`
 	}
 
 	return;
@@ -127,7 +127,7 @@ export const stylishFormatter = (data) => {
 				return 
 			}
 
-			const stringForData = `\n${' '.repeat(numberOfSpaces)}${keyItem}: {${formatData(valueData.value, [...path, keyItem])}\n${' '.repeat(numberOfSpaces)}}`
+			const stringForData = `\n${'&#09'.repeat(numberOfSpaces)}${keyItem}: {${formatData(valueData.value, [...path, keyItem])}\n${'&#09'.repeat(numberOfSpaces)}}`
 			mainFormatedData = [...mainFormatedData, stringForData]
 		})
 
