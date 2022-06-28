@@ -122,7 +122,6 @@ export const stylishFormatter = (data) => {
 				return 
 			}
 
-			console.log('numberOfSpaces', numberOfSpaces)
 			const stringForData = `\n${' '.repeat(numberOfSpaces)}${keyItem}: {${formatData(valueData.value, [...path, keyItem])}\n${' '.repeat(numberOfSpaces)}}`
 			mainFormatedData = [...mainFormatedData, stringForData]
 		})
