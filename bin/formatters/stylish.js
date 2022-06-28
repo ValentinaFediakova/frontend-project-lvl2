@@ -5,19 +5,24 @@ const FIX_TAB_SIZE = 4;
 const FIX_TAB_FOR_SIGN = 2;
 
 const countNumberOfSpaces = (path, options = {}) => {
-	// console.log('path', path)
-	// console.log('options.withSign', options.withSign)
 	let numberOfSpace;
+
+	if (optionsOfObject.isPlainObject) {
+    numberOfSpace = path.length * FIX_TAB_SIZE;
+
+    if (options.withSign === true) {
+        numberOfSpace = (path.length * FIX_TAB_SIZE) - FIX_TAB_FOR_SIGN;
+    }
+
+    return numberOfSpace;
+	}
 
 	if (options.withSign === true) {
 		numberOfSpace = (path.length * FIX_TAB_SIZE) - FIX_TAB_FOR_SIGN;
-		// console.log('numberOfSpace options.withSign', numberOfSpace)
-
 		return numberOfSpace;
 	}
 
 	numberOfSpace = path.length * FIX_TAB_SIZE;
-	// console.log('numberOfSpace', numberOfSpace)
 	return numberOfSpace;
 }
 
