@@ -52,7 +52,7 @@ const convertStatusToFormatInObject = (data, path) => {
 		}
 
 		if (_.isObject(newValue)) {
-			return `\nProperty '${pathWay}' was updated. From '${value}' to [complex value]`
+			return `\nProperty '${pathWay}' was updated. From ${value} to [complex value]`
 		}
 	}
 
@@ -72,7 +72,7 @@ export const plainFormatter = (data) => {
 			const [keyItem, valueData] = item;
 			const pathItem = [...path, keyItem]
 
-			console.log('[keyItem, valueData]', [keyItem, valueData])
+			// console.log('[keyItem, valueData]', [keyItem, valueData])
 
 			const value = valueData.valueIsJson === true ? JSON.parse(valueData.value) : valueData.value
 			const newValue = valueData.newValueIsJson === true ? JSON.parse(valueData.newValue) : valueData.newValue
