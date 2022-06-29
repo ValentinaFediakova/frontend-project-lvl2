@@ -72,7 +72,12 @@ export const plainFormatter = (data) => {
 			const [keyItem, valueData] = item;
 			const pathItem = [...path, keyItem]
 
-			if (!_.isObject(valueData.value) && valueData.valueIsJson === undefined) {
+			console.log('[keyItem, valueData]', [keyItem, valueData])
+
+			const value = valueData.valueIsJson === true ? JSON.parse(valueData.value) : valueData.value
+			const newValue = valueData.newValueIsJson === true ? JSON.parse(valueData.newValue) : valueData.newValue
+
+			if (!_.isObject(valueData.value) && !_.isObject(value) && !_.isObject(newValue)) {
 				formattedData = [...formattedData, convertStatusToFormatInPlainData(valueData, pathItem, isFirstPlainValue)];
         isFirstPlainValue = false;
 				return;
