@@ -8,13 +8,13 @@ const countNumberOfSpaces = (path, options = {}) => {
 	let numberOfSpace;
 
 	if (optionsOfObject.isPlainObject) {
-    numberOfSpace = path.length * FIX_TAB_SIZE;
+		numberOfSpace = path.length * FIX_TAB_SIZE;
 
-    if (options.withSign === true) {
-        numberOfSpace = (path.length * FIX_TAB_SIZE) - FIX_TAB_FOR_SIGN;
-    }
+		if (options.withSign === true) {
+			numberOfSpace = (path.length * FIX_TAB_SIZE) - FIX_TAB_FOR_SIGN;
+		}
 
-    return numberOfSpace;
+		return numberOfSpace;
 	}
 
 	if (options.withSign === true) {
@@ -39,7 +39,7 @@ const formatStatusToSignForSimpleData = ([key, value, status, newValue], path) =
 		return `\n${' '.repeat(numberOfSpaces)}${key}: ${value}`
 	}
 	if (status === "changed") {
-        return `\n${' '.repeat(numberOfSpaceWithSign)}- ${key}: ${value}\n${' '.repeat(numberOfSpaceWithSign)}+ ${key}: ${newValue}`
+		return `\n${' '.repeat(numberOfSpaceWithSign)}- ${key}: ${value}\n${' '.repeat(numberOfSpaceWithSign)}+ ${key}: ${newValue}`
 	}
 
 	return;
@@ -91,7 +91,7 @@ const convertInnersIfObjectHasChangeStatus = (valueString, path) => {
 		const dataWithDiffStatusFirst = `${' '.repeat(numberOfSpaceWithSign)}- ${valueString.key}: ${value}`
 		const dataWithDiffStatusSecond = `${' '.repeat(numberOfSpaceWithSign)}+ ${valueString.key}: {${statusToSignForNotchangedObjects(newValue, path)}\n${' '.repeat(numberOfSpaces)}}`
 		const result = `\n${dataWithDiffStatusFirst}\n${dataWithDiffStatusSecond}`
-		return result;	
+		return result;
 	}
 
 }
@@ -114,7 +114,7 @@ export const stylishFormatter = (data) => {
 				mainFormatedData = [...mainFormatedData, simpleDataString]
 				return
 			}
-			
+
 			if (valueData.status === 'added' || valueData.status === 'deleted') {
 				const singBeforeObject = valueData.status === 'added' ? '+ ' : '- ';
 				const stringForData = `\n${' '.repeat(numberOfSpaceWithSign)}${singBeforeObject}${keyItem}: {${statusToSignForNotchangedObjects(valueData.value, [...path, valueData.key])}\n${' '.repeat(numberOfSpaces)}}`
@@ -124,7 +124,7 @@ export const stylishFormatter = (data) => {
 			if (valueData.status === 'changed') {
 				const dataString = convertInnersIfObjectHasChangeStatus(valueData, [...path, valueData.key])
 				mainFormatedData = [...mainFormatedData, dataString]
-				return 
+				return
 			}
 
 			const stringForData = `\n${' '.repeat(numberOfSpaces)}${keyItem}: {${formatData(valueData.value, [...path, keyItem])}\n${' '.repeat(numberOfSpaces)}}`
@@ -135,6 +135,6 @@ export const stylishFormatter = (data) => {
 	}
 
 	const result = formatData(data, []);
-    return `{${result}\n}`;
+	return `{${result}\n}`;
 }
 
