@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Wed Jun 29 13:13:14 2022
+# Make data base, printed on Thu Jul 21 21:43:04 2022
 
 # Variables
 
@@ -28,8 +28,6 @@ XDG_SESSION_CLASS = user
 SNAP_COMMON = /var/snap/code/common
 # environment
 XDG_SESSION_TYPE = x11
-# environment
-VSCODE_LOG_NATIVE = false
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
 # environment
@@ -47,11 +45,11 @@ CURDIR := /home/valentina/work/hexlet/projects/frontend-project-lvl2
 # makefile
 SHELL = /bin/sh
 # environment
-SNAP_DATA = /var/snap/code/99
+SNAP_DATA = /var/snap/code/101
 # environment
 VSCODE_NLS_CONFIG = {"locale":"ru","availableLanguages":{},"_languagePackSupport":true}
 # environment
-JOURNAL_STREAM = 8:48757
+JOURNAL_STREAM = 8:50310
 # environment
 XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
 # environment
@@ -71,9 +69,7 @@ XDG_DATA_DIRS = /usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/d
 # environment
 DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
 # environment
-VSCODE_VERBOSE_LOGGING = true
-# environment
-_ = /snap/code/99/usr/share/code/code
+_ = /snap/code/101/usr/share/code/code
 # environment
 MANAGERPID = 1707
 # environment
@@ -81,7 +77,7 @@ LESSOPEN = | /usr/bin/lesspipe %s
 # environment
 VSCODE_CWD = /home/valentina
 # environment
-GSETTINGS_SCHEMA_DIR = /snap/code/99/usr/share/glib-2.0/schemas
+GSETTINGS_SCHEMA_DIR = /snap/code/101/usr/share/glib-2.0/schemas
 # default
 MAKE_HOST := x86_64-pc-linux-gnu
 # environment
@@ -89,27 +85,25 @@ PATH = /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/
 # environment
 GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
 # environment
-SESSION_MANAGER = local/valentina-HP-255-G5-Notebook-PC:@/tmp/.ICE-unix/1939,unix/valentina-HP-255-G5-Notebook-PC:/tmp/.ICE-unix/1939
+SESSION_MANAGER = local/valentina-HP-255-G5-Notebook-PC:@/tmp/.ICE-unix/1952,unix/valentina-HP-255-G5-Notebook-PC:/tmp/.ICE-unix/1952
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
 GDK_PIXBUF_MODULE_FILE = /home/valentina/snap/code/common/.cache/gdk-pixbuf-loaders.cache
 # environment
-SNAP = /snap/code/99
+SNAP = /snap/code/101
 # environment
-SNAP_VERSION = 30d9c6cd
+SNAP_VERSION = b06ae3b2
 # environment
 XDG_MENU_PREFIX = gnome-
-# environment
-VSCODE_LOG_STACK = false
 # environment
 DISABLE_WAYLAND = 1
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # environment
-INVOCATION_ID = 7201e237e3f5480aa469f768ea100dfb
+INVOCATION_ID = 375002c2bf5f401fb096ec15d28269dd
 # environment
-GDK_PIXBUF_MODULEDIR = /snap/code/99/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders
+GDK_PIXBUF_MODULEDIR = /snap/code/101/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
 # environment
@@ -119,13 +113,11 @@ XDG_SESSION_DESKTOP = ubuntu
 # environment
 SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 4525
+GIO_LAUNCHED_DESKTOP_FILE_PID = 5749
 # automatic
 %F = $(notdir $%)
 # environment
 DISPLAY = :0
-# environment
-VSCODE_PIPE_LOGGING = true
 # environment
 SNAP_INSTANCE_KEY = 
 # environment
@@ -133,7 +125,7 @@ PWD = /home/valentina/work/hexlet/projects/frontend-project-lvl2
 # default
 .LOADED := 
 # environment
-SSH_AGENT_PID = 1889
+SSH_AGENT_PID = 1902
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
 # environment
@@ -147,7 +139,7 @@ LESSCLOSE = /usr/bin/lesspipe %s %s
 # environment
 VSCODE_CLI = 1
 # environment
-VSCODE_CODE_CACHE_PATH = /home/valentina/.config/Code/CachedData/30d9c6cd9483b2cc586687151bcbcd635f373630
+VSCODE_CODE_CACHE_PATH = /home/valentina/.config/Code/CachedData/b06ae3b2d2dbfe28bca3134cc6be65935cdfea6a
 # environment
 LOGNAME = valentina
 # environment
@@ -177,19 +169,17 @@ MAKECMDGOALS := all
 # environment
 QT_IM_MODULE = ibus
 # environment
-SNAP_USER_DATA = /home/valentina/snap/code/99
+SNAP_USER_DATA = /home/valentina/snap/code/101
 # environment
 SHLVL = 0
 # environment
 GNOME_SHELL_SESSION_MODE = ubuntu
-# environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-ebcc729f-33c9-4ea0-9848-83bfa46a3a0d.sock
 # default
 MAKE_VERSION := 4.2.1
 # environment
 USER = valentina
 # environment
-SNAP_REVISION = 99
+SNAP_REVISION = 101
 # makefile
 .DEFAULT_GOAL := install
 # environment
@@ -203,7 +193,7 @@ MAKE_COMMAND := make
 # automatic
 *F = $(notdir $*)
 # environment
-VSCODE_IPC_HOOK = /run/user/1000/vscode-501c7404-1.68.1-main.sock
+VSCODE_IPC_HOOK = /run/user/1000/vscode-501c7404-1.69.1-main.sock
 # environment
 BAMF_DESKTOP_FILE_HINT = /var/lib/snapd/desktop/applications/code_code.desktop
 # makefile
@@ -251,9 +241,9 @@ GJS_DEBUG_OUTPUT = stderr
 # environment
 LANG = C
 # environment
-VSCODE_PID = 4600
+VSCODE_PID = 5804
 # variable set hash-table stats:
-# Load=120/1024=12%, Rehash=0, Collisions=18/145=12%
+# Load=115/1024=11%, Rehash=0, Collisions=17/140=12%
 
 # Pattern-specific Variable Values
 
@@ -281,7 +271,6 @@ all:
 cover:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
- 
 #  File has not been updated.
 #  recipe to execute (from 'Makefile', line 20):
 	npm test -- --coverage --coverageProvider=v8
@@ -292,6 +281,7 @@ Makefile:
 #  Last modified 2022-06-20 16:50:06.329725753
 #  File has been updated.
 #  Successfully updated.
+ 
 
 test:
 #  Implicit rule search has not been done.
@@ -355,6 +345,6 @@ install:
 # strcache performance: lookups = 43 / hit rate = 25%
 # hash-table stats:
 # Load=32/8192=0%, Rehash=0, Collisions=1/43=2%
-# Finished Make data base on Wed Jun 29 13:13:14 2022
+# Finished Make data base on Thu Jul 21 21:43:04 2022
 
  

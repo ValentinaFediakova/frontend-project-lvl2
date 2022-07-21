@@ -48,7 +48,7 @@ const convertStatusToFormatInObject = (data, path) => {
 		const newValue = data.newValueIsJson === true ? JSON.parse(data.newValue) : data.newValue
 	
 		if (_.isObject(value)) {
-			return `\nProperty '${pathWay}' was updated. From [complex value] to '${newValue}'`
+			return `\nProperty '${pathWay}' was updated. From [complex value] to '${newValue}`
 		}
 
 		if (_.isObject(newValue)) {

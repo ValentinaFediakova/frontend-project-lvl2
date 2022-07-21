@@ -1,5 +1,5 @@
 
 
 export const jsonFormatter = (data) => {
-	return data;
+	return JSON.stringify(data);
 }
