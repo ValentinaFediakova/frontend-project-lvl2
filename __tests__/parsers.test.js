@@ -9,17 +9,17 @@ const __dirname = dirname(__filename);
 const getFixturePath = (filename) => join(__dirname, '..', '__tests__','__fixtures__', filename);
 
 const result1 = {
-    "host": "hexlet.io",
-    "timeout": 50,
-    "proxy": "123.234.53.22",
-    "follow": false
-  }
-
+  "host": "hexlet.io",
+  "timeout": 50,
+  "proxy": "123.234.53.22",
+  "follow": false
+}
+  
 
 const result2 = {
-  "host": "hexlet.io",
   "timeout": 20,
-  "verbose": true
+  "verbose": true,
+  "host": "hexlet.io"
 }
 
 const result3 = {

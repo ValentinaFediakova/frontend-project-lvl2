@@ -104,9 +104,7 @@ export const dissimilarities = (data1, data2, whichFormatter = 'stylish') => {
 	const result2 = formStatus(data2, data1, [], true);
 	const result3 = _.merge(result2, result);
 	const a = sortData(result3);
-
-	// console.log('DATA', a)
-
+	
 	const mainresult = whichFormatterUse(a, whichFormatter);
 
 	return mainresult;

@@ -1,6 +1,6 @@
+import { expect, test } from '@jest/globals';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
-import { expect, test } from '@jest/globals';
 import fs from 'fs';
 import { parser } from '../bin/parsers/parsers.js'
 import { dissimilarities } from '../bin/findDissimilarities.js'
@@ -73,17 +73,5 @@ test('test function dissimilarity()', () => {
     const path2 = parser(content2, file2)
     
     expect(dissimilarities(path1, path2)).toEqual(result);
-})
-
-test('test function inDepthDissimilarity()', () => {
-    const file1 = getFixturePath('rFile1.json');
-    const content1 = fs.readFileSync(file1).toString();
-    const path1 = parser(content1, file1)
-
-    const file2 = getFixturePath('rFile2.json');
-    const content2 = fs.readFileSync(file2).toString();
-    const path2 = parser(content2, file2)
-
-    expect(dissimilarities(path1, path2)).toEqual(result2);
 })
 
