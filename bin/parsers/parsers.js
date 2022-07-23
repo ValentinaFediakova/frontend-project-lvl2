@@ -1,6 +1,6 @@
 import yaml from 'js-yaml';
 
-export const parser = (content, filePath) => {
+const parser = (content, filePath) => {
   if (filePath.includes('.json')) {
     return JSON.parse(content);
   }
@@ -9,4 +9,8 @@ export const parser = (content, filePath) => {
     const result = yaml.load(content, { json: true, schema: yaml.JSON_SCHEMA });
     return result;
   }
+
+  return 'нет такого формата';
 };
+
+export default parser;

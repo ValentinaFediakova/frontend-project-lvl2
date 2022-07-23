@@ -3,7 +3,7 @@ import { dirname, join } from 'path';
 import { expect, test } from '@jest/globals';
 import fs from 'fs';
 
-import { parser } from '../bin/parsers/parsers.js';
+import parser from '../bin/parsers/parsers.js';
 import { dissimilarities } from '../bin/findDissimilarities.js';
 
 const __filename = fileURLToPath(import.meta.url);

@@ -38,9 +38,8 @@ const formatStatusToSignForSimpleData = ([key, value, status, newValue], path) =
   if (status === 'not_changed') {
     return `\n${' '.repeat(numberOfSpaces)}${key}: ${value}`;
   }
-  if (status === 'changed') {
-    return `\n${' '.repeat(numberOfSpaceWithSign)}- ${key}: ${value}\n${' '.repeat(numberOfSpaceWithSign)}+ ${key}: ${newValue}`;
-  }
+  // if (status === 'changed') {
+  return `\n${' '.repeat(numberOfSpaceWithSign)}- ${key}: ${value}\n${' '.repeat(numberOfSpaceWithSign)}+ ${key}: ${newValue}`;
 };
 
 const statusToSignForNotchangedObjects = (data, path) => {
@@ -69,10 +68,23 @@ const statusToSignForNotchangedObjects = (data, path) => {
 };
 
 const convertInnersIfObjectHasChangeStatus = (valueString, path) => {
-  const value = valueString.valueIsJson === true ? JSON.parse(valueString.value) : valueString.value;
-  const newValue = valueString.newValueIsJson === true ? JSON.parse(valueString.newValue) : valueString.newValue;
   const numberOfSpaces = countNumberOfSpaces(path);
   const numberOfSpaceWithSign = countNumberOfSpaces(path, { withSign: true });
+
+  let value;
+  let newValue;
+
+  if (valueString.valueIsJson === true) {
+    value = JSON.parse(valueString.value);
+  } else {
+    value = valueString.value;
+  }
+
+  if (valueString.newValueIsJson === true) {
+    newValue = JSON.parse(valueString.newValue);
+  } else {
+    newValue = valueString.newValue;
+  }
 
   if (_.isObject(value)) {
     const dataWithDiffStatusFirst = `${' '.repeat(numberOfSpaceWithSign)}- ${valueString.key}: {${statusToSignForNotchangedObjects(value, path)}\n${' '.repeat(numberOfSpaces)}}`;
@@ -87,9 +99,11 @@ const convertInnersIfObjectHasChangeStatus = (valueString, path) => {
     const result = `\n${dataWithDiffStatusFirst}\n${dataWithDiffStatusSecond}`;
     return result;
   }
+
+  return '';
 };
 
-export const stylishFormatter = (data) => {
+const stylishFormatter = (data) => {
   const formatData = (partOfData, path) => {
     let mainFormatedData = [];
     const entries = Object.entries(partOfData);
@@ -100,8 +114,13 @@ export const stylishFormatter = (data) => {
       const numberOfSpaces = countNumberOfSpaces(pathItem);
       const numberOfSpaceWithSign = countNumberOfSpaces(pathItem, { withSign: true });
 
-      if (!_.isObject(valueData.value) && valueData.valueIsJson == undefined && valueData.newValueIsJson == undefined) {
-        const simpleDataString = formatStatusToSignForSimpleData([valueData.key, valueData.value, valueData.status, valueData.newValue], [...path, valueData.key]);
+      if (!_.isObject(valueData.value)
+        && valueData.valueIsJson === undefined
+        && valueData.newValueIsJson === undefined) {
+        const simpleDataString = formatStatusToSignForSimpleData(
+          [valueData.key, valueData.value, valueData.status, valueData.newValue],
+          [...path, valueData.key],
+        );
         mainFormatedData = [...mainFormatedData, simpleDataString];
         return;
       }
@@ -113,7 +132,10 @@ export const stylishFormatter = (data) => {
         return;
       }
       if (valueData.status === 'changed') {
-        const dataString = convertInnersIfObjectHasChangeStatus(valueData, [...path, valueData.key]);
+        const dataString = convertInnersIfObjectHasChangeStatus(
+          valueData,
+          [...path, valueData.key],
+        );
         mainFormatedData = [...mainFormatedData, dataString];
         return;
       }
@@ -128,3 +150,5 @@ export const stylishFormatter = (data) => {
   const result = formatData(data, []);
   return `{${result}\n}`;
 };
+
+export default stylishFormatter;

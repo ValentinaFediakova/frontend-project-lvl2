@@ -2,7 +2,7 @@
 import { Command } from 'commander';
 import path from 'path';
 import fs from 'fs';
-import { parser } from './parsers/parsers.js';
+import parser from './parsers/parsers.js';
 import { dissimilarities } from './findDissimilarities.js';
 
 const program = new Command();
