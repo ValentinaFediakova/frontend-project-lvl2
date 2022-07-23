@@ -1,5 +1,3 @@
+const jsonFormatter = (data) => JSON.stringify(data);
 
-
-export const jsonFormatter = (data) => {
-    return JSON.stringify(data);
-};
+export default jsonFormatter;
