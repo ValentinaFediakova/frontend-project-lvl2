@@ -3,8 +3,8 @@ import { dirname, join } from 'path';
 import { expect, test } from '@jest/globals';
 import fs from 'fs';
 
-import { parser } from '../bin/parsers/parsers.js'
-import { dissimilarities } from '../bin/findDissimilarities.js'
+import { parser } from '../bin/parsers/parsers.js';
+import { dissimilarities } from '../bin/findDissimilarities.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -56,7 +56,7 @@ const result1 = `{
         }
         fee: 100500
     }
-}`
+}`;
 
 const result2 = `Property 'common.follow' was added with value: false
 Property 'common.setting2' was removed
@@ -68,27 +68,27 @@ Property 'common.setting6.ops' was added with value: 'vops'
 Property 'group1.baz' was updated. From 'bas' to 'bars'
 Property 'group1.nest' was updated. From [complex value] to 'str'
 Property 'group2' was removed
-Property 'group3' was added with value: [complex value]`
+Property 'group3' was added with value: [complex value]`;
 
 
 test('test stylish formatter', () => {
-  const file1 = getFixturePath('rFile1.json');
-  const content1 = fs.readFileSync(file1).toString();
-  const path1 = parser(content1, file1);
+    const file1 = getFixturePath('rFile1.json');
+    const content1 = fs.readFileSync(file1).toString();
+    const path1 = parser(content1, file1);
 
-  const file2 = getFixturePath('rFile2.json');
-  const content2 = fs.readFileSync(file2).toString();
-  const path2 = parser(content2, file2);
-  expect(dissimilarities(path1, path2, 'stylish')).toEqual(result1);
-})
+    const file2 = getFixturePath('rFile2.json');
+    const content2 = fs.readFileSync(file2).toString();
+    const path2 = parser(content2, file2);
+    expect(dissimilarities(path1, path2, 'stylish')).toEqual(result1);
+});
 
 test('test plain formatter', () => {
-  const file1 = getFixturePath('rFile1.json');
-  const content1 = fs.readFileSync(file1).toString();
-  const path1 = parser(content1, file1);
+    const file1 = getFixturePath('rFile1.json');
+    const content1 = fs.readFileSync(file1).toString();
+    const path1 = parser(content1, file1);
 
-  const file2 = getFixturePath('rFile2.json');
-  const content2 = fs.readFileSync(file2).toString();
-  const path2 = parser(content2, file2);
-  expect(dissimilarities(path1, path2, 'plain')).toEqual(result2);
-})
+    const file2 = getFixturePath('rFile2.json');
+    const content2 = fs.readFileSync(file2).toString();
+    const path2 = parser(content2, file2);
+    expect(dissimilarities(path1, path2, 'plain')).toEqual(result2);
+});

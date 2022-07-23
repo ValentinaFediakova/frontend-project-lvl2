@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Thu Jul 21 21:43:04 2022
+# Make data base, printed on Sat Jul 23 17:54:38 2022
 
 # Variables
 
@@ -113,7 +113,7 @@ XDG_SESSION_DESKTOP = ubuntu
 # environment
 SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 5749
+GIO_LAUNCHED_DESKTOP_FILE_PID = 369423
 # automatic
 %F = $(notdir $%)
 # environment
@@ -241,7 +241,7 @@ GJS_DEBUG_OUTPUT = stderr
 # environment
 LANG = C
 # environment
-VSCODE_PID = 5804
+VSCODE_PID = 369475
 # variable set hash-table stats:
 # Load=115/1024=11%, Rehash=0, Collisions=17/140=12%
 
@@ -345,6 +345,6 @@ install:
 # strcache performance: lookups = 43 / hit rate = 25%
 # hash-table stats:
 # Load=32/8192=0%, Rehash=0, Collisions=1/43=2%
-# Finished Make data base on Thu Jul 21 21:43:04 2022
+# Finished Make data base on Sat Jul 23 17:54:38 2022
 
  

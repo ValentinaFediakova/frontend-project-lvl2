@@ -1,16 +1,31 @@
 module.exports = {
-    "env": {
-        "es2021": true,
+    'env': {
         "node": true,
-		"jest": true
+        'es2021': true
     },
-    "parser": "@babel/eslint-parser",
-    "extends": "eslint:recommended",
-    "parserOptions": {
-        "ecmaVersion": "latest",
-        "sourceType": "module",
-        "requireConfigFile": false,
+    'extends': 'eslint:recommended',
+    'parserOptions': {
+        'ecmaVersion': 'latest',
+        'sourceType': 'module'
     },
-    "rules": {
+    'rules': {
+        'indent': [
+            'error',
+            4
+        ],
+        'linebreak-style': [
+            'error',
+            'unix'
+        ],
+        'quotes': [
+            'error',
+            'single'
+        ],
+        'semi': [
+            'error',
+            'always'
+        ]
     }
-}
+};
+
+
