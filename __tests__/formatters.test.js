@@ -70,7 +70,7 @@ Property 'group1.nest' was updated. From [complex value] to 'str'
 Property 'group2' was removed
 Property 'group3' was added with value: [complex value]`;
 
-test('test stylish formatter', () => {
+test('stylish formatter', () => {
   const file1 = getFixturePath('rFile1.json');
   const content1 = fs.readFileSync(file1).toString();
   const path1 = parser(content1, file1);
@@ -82,14 +82,3 @@ test('test stylish formatter', () => {
 
   expect(dissimilarities(path1, path2, 'plain')).toEqual(result2);
 });
-
-// test('test plain formatter', () => {
-//   const file1 = getFixturePath('rFile1.json');
-//   const content1 = fs.readFileSync(file1).toString();
-//   const path1 = parser(content1, file1);
-
-//   const file2 = getFixturePath('rFile2.json');
-//   const content2 = fs.readFileSync(file2).toString();
-//   const path2 = parser(content2, file2);
-//   expect(dissimilarities(path1, path2, 'plain')).toEqual(result2);
-// });

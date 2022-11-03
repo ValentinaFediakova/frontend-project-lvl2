@@ -18,7 +18,7 @@ const result = `{
   + verbose: true
 }`;
 
-test('test function dissimilarity()', () => {
+test('function dissimilarity()', () => {
   const file1 = getFixturePath('file1.json');
   const content1 = fs.readFileSync(file1).toString();
   const file2 = getFixturePath('file2.json');

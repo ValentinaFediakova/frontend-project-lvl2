@@ -75,7 +75,7 @@ const result4 = {
   },
 };
 
-test('test function parser', () => {
+test('function parser', () => {
   const file1 = getFixturePath('file1.json');
   const content1 = fs.readFileSync(file1).toString();
   const a = parser(content1, file1);
