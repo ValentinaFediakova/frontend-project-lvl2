@@ -1,3 +1,5 @@
+/*  eslint import/no-cycle: [2, { maxDepth: 1 }]  */
+
 import _ from 'lodash';
 import { optionsOfObject } from '../findDissimilarities.js';
 

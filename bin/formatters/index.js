@@ -1,3 +1,5 @@
+/*  eslint import/no-cycle: [2, { maxDepth: 1 }]  */
+
 // Выбор форматеров реализуйте в файле formatters/index.js.
 import stylishFormatter from './stylish.js';
 import plainFormatter from './plain.js';

@@ -1,3 +1,5 @@
+/*  eslint import/no-cycle: [2, { maxDepth: 1 }]  */
+
 import _ from 'lodash';
 import whichFormatterUse from './formatters/index.js';
 
@@ -27,6 +29,8 @@ const checkPlaneStatus = (partOfData, path, comparedData, isCallForCompareData2)
   if (!_.has(comparedData, path)) {
     return { key: `${key}`, value, status: isCallForCompareData2 ? statuses.ADDED : statuses.DELETED };
   }
+
+  return null;
 };
 
 const addStatusForChildren = (children) => {
@@ -47,6 +51,26 @@ const addStatusForChildren = (children) => {
 
   const result = formChildrenStatus(children);
   return result;
+};
+
+const sortData = (data) => {
+  const cloneData = _.cloneDeep(data);
+
+  const formSortedData = (partOfData) => {
+    const entriesOfData = Object.entries(partOfData)
+      .sort((a, b) => (a[0] > b[0] ? 1 : -1))
+      .map(([key, keyStatusValue]) => {
+        if (!_.isObject(keyStatusValue.value)) {
+          return [key, keyStatusValue];
+        }
+        return [key, { ...keyStatusValue, value: formSortedData(keyStatusValue.value) }];
+      });
+
+    return Object.fromEntries(entriesOfData);
+  };
+
+  const sortResult = formSortedData(cloneData);
+  return sortResult;
 };
 
 export const dissimilarities = (data1, data2, whichFormatter = 'stylish') => {
@@ -106,24 +130,4 @@ export const dissimilarities = (data1, data2, whichFormatter = 'stylish') => {
   const mainresult = whichFormatterUse(a, whichFormatter);
 
   return mainresult;
-};
-
-const sortData = (data) => {
-  const cloneData = _.cloneDeep(data);
-
-  const formSortedData = (partOfData) => {
-    const entriesOfData = Object.entries(partOfData)
-      .sort((a, b) => (a[0] > b[0] ? 1 : -1))
-      .map(([key, keyStatusValue]) => {
-        if (!_.isObject(keyStatusValue.value)) {
-          return [key, keyStatusValue];
-        }
-        return [key, { ...keyStatusValue, value: formSortedData(keyStatusValue.value) }];
-      });
-
-    return Object.fromEntries(entriesOfData);
-  };
-
-  const sortResult = formSortedData(cloneData);
-  return sortResult;
 };
