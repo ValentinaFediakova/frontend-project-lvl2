@@ -13,6 +13,8 @@ jobs:
         uses: actions/checkout@v2
       - name: npm packages install
         run: npm i
+      - name: fix all
+        run: make lint-fix
       - name: check linter status
         run: make lint
   tests-check:
