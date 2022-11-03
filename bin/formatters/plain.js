@@ -1,3 +1,5 @@
+/* eslint fp/no-let: 0 */
+/* eslint fp/no-mutation: 0 */
 import _ from 'lodash';
 
 const checkString = (value) => {

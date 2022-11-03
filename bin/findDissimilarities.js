@@ -1,4 +1,6 @@
 /*  eslint import/no-cycle: [2, { maxDepth: 1 }]  */
+/* eslint fp/no-mutation: 0 */
+/* eslint fp/no-mutating-methods: 0 */
 
 import _ from 'lodash';
 import whichFormatterUse from './formatters/index.js';
