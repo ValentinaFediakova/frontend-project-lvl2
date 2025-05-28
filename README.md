@@ -74,3 +74,7 @@ gendiff --format plain file1.yml file2.yml
 ```bash
 make test
 ```
+
+## 📆 Status
+
+Project completed as part of the Hexlet curriculum. No active development planned, but feel free to explore the code.
