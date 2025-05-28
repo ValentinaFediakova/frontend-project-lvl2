@@ -74,7 +74,3 @@ gendiff --format plain file1.yml file2.yml
 ```bash
 make test
 ```
-
-## 📄 License
-
-MIT
